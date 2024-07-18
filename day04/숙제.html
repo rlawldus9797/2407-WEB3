@@ -13,15 +13,15 @@
     * * * * *<br> -->
 
     <script>
-        for(let j = 0; j<5; j++){
-            for(let i=0; i <= j; i++) {
+        for(let i = 0; i<5; i++){
+            for(let j=0; j <= i; j++) {
                 document.write('*')
             }
             document.write('<br>')
         }
 
-        for(let j = 5; j>0; j--) {
-            for(let i =5; i >= j; i--) {
+        for(let i = 0; i<5; i++) {
+            for(let j =0; j <= 5 -i; j++) {
                 document.write('*')
             }
             document.write('<br>')
