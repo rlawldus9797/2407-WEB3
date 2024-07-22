@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 매개변수도 없고, 리턴도 없는 함수
+        function star() {
+            document.write('&nbsp;*&nbsp;')
+        }
+
+        // 함수는 매개변수와 리턴을 선택적으로 사용할 수 있다.
+        
+        // 함수 선언시 괄호 안에 들어가는 것이 '매개변수'
+        // 함수를 사용할 때 어떤 값을 외부로부터 받아 올 것인지 미리 정해놓는 곳
+        function add3AndExportConsole(number){
+            console.log(number+3)
+        }
+
+        add3AndExportConsole(6)
+
+        function add3(숫자넣어라) {
+            return 숫자넣어라 + 3
+        }
+
+        const 계산값 = add3(103);
+        console.log(add3(103))
+
+
+        function 출생년도(나이) {
+            const date = new Date();
+            const 현재년도 = date.getFullYear();
+
+            return 현재년도 - 나이 + 1;
+        }
+
+        const 본인출생년도 = 출생년도(28)
+        const 이지출생년도 = 출생년도(33)
+
+        console.log(본인출생년도)
+        console.log(이지출생년도)
+
+    </script>
+</body>
+</html>
