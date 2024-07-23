@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const alpha = ['a','b','c','d','e'];
+        
+        // console.log(alpha[0])
+        // console.log(alpha[1])
+        // console.log(alpha[2])
+        // console.log(alpha[3])
+        // console.log(alpha[4])
+
+
+        // for(i가 0부터 4까지 1씩 커지면서 반복)
+        for(let i = 0; i < 5; i++) {
+            console.log(alpha[i]);
+        }
+
+        // 배열 마지막에 'f'를 추가하고 콘솔에 모두 나타나도록 하고싶을 때
+        // for(let i=0; i < alpha.length; i++) {
+        //      console.log(alpha[i])
+        // }
+
+        // 1 부터 100까지 나열한 것을 반복문으로 작성하기.
+        // for([]이 0부터 100까지 1씩 커지면서 반복)
+        const arr = [];
+
+        for(let i= 1; i <= 100; i++) {
+            arr.push(i) 
+        }
+
+        console.log(arr);
+
+        // arr 안에 짝수가 몇개나 있는지 나타내기.
+        // console.log()에 짝수가 몇개인지 출력하기.
+
+        //arr 짝수는 %2 === 0;
+
+        let count = 0;
+        for(let i = 0; i < arr.length; i++) {
+            if(arr[i] % 2 === 0) {
+                count++
+            }
+        }
+
+        console.log(count)
+
+        const 짝수 = [];
+
+        for(let i = 1; i < arr.length; i++) {
+            if(arr[i] % 2 === 0) {
+                짝수.push(arr[i]);
+            }
+        }
+
+        console.log(짝수.length)
+
+
+
+        const arr2 = [1 , 4 , 2 , 2 , 4 , 3 , 2 , 4]
+        // 배열 안에 3 이상인 값은 몇개인가?
+        
+        let count2 = 0;
+
+        for( let i = 0; i < arr2.length; i++) {
+            if(arr2[i] >= 3) {
+                count2++
+            }
+        }
+        console.log(count2)
+    </script>
+</body>
+</html>
