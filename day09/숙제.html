@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: bisque;
+            transition: 0.5s;
+        }
+
+        .box.active {
+            opacity: 0;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <button class="switch">스위치</button>
+
+    <script>
+        const box = document.getElementsByClassName('box');
+        const button = document.querySelector('.switch');
+
+        button.addEventListener('click', ()=> {
+            box[0].classList.toggle('active')
+        })
+
+       
+
+    </script>
+</body>
+</html>
