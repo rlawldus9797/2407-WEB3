@@ -48,29 +48,29 @@
     <script>
         alert('가위바위보 게임')
 
-        let 선택;
-        let 기회;
 
-        const 컴퓨터 = parseInt(Math.random()*2);
+        const 컴퓨터 = parseInt(Math.random()*3);  
+        // 컴퓨터 상수선언 하고 0~2까지(시작은 0부터) 랜덤으로 나오게 설정
+        const 본인 = parseInt(prompt('0 : 주먹, 1 : 가위, 2 : 보'));
+        // 본인 상수선언 하고 누르는 대로 값이 정해지게 설정
 
-        while(true) {
-            선택 = parseInt(prompt('가위바위보 중에 하나를 선택하세요' , '0 : 주먹 1 : 가위 2 : 보'));
-            if(typeof 선택 === 'number' && 선택 >=0 && 선택 <=2) {
-                break;
-            }
-            alert('다시 선택해 주세요')
-        }
-
-        if(컴퓨터 === 선택){
+        
+        if(컴퓨터 === 본인){
             alert('무승부')
+            
         }
-        else if(컴퓨터 < 선택){
+        else if(본인===0 && 컴퓨터===1 || 본인===1 && 컴퓨터===2 || 본인===2 && 컴퓨터===0){
             alert('승리')
+            
         }
         else {
             alert('패배')
+            
         }
 
+        console.log(컴퓨터,본인)
+
+        
         
     </script>
 </body>
