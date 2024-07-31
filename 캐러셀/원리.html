@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <style>
+
+        .slider {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+        .content-wrapper {
+            display: flex;
+        }
+
+        .content {
+            width: 300px;
+            height: 200px;
+            background-color: antiquewhite;
+
+            flex-shrink: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <ul class="content-wrapper"> 
+            <li class="content">1</li>
+            <li class="content">2</li>
+            <li class="content">3</li>
+        </ul>
+    </div>
+    <div class="controls">
+        <button class="prev">이전</button>
+        <button class="next">다음</button>
+    </div>
+    <script>
+        const content = document.querySelector('.content-wrapper');
+        const prev = document.querySelector('.prev');
+        const next = document.querySelector('.next');
+
+        let 좌표 = 0;
+
+        // 좌표는 하나로 사용할 것
+
+        next.addEventListener('click', ()=> {
+            좌표 -= 300;
+
+            if(좌표 < -600) {
+                좌표 = -600;
+            }
+            // 컨텐츠 랩퍼를 -300px만큼 이동하게
+            content.style.transform = `translateX(${좌표}px)`
+        })
+
+        prev.addEventListener('click', ()=> {
+            좌표 += 300;
+
+            if(좌표>0) {
+                좌표 = 0;
+            }
+
+            // 컨텐츠 랩퍼를 +300px만큼 이동하게
+            content.style.transform = `translateX(${좌표}px)`
+        })
+
+        
+
+    </script>    
+</body>
+</html>
