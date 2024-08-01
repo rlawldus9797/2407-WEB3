@@ -8,16 +8,17 @@
     <style>
 
         .slider {
-            width: 300px;
+            width: 500px;
             height: 200px;
             overflow: hidden;
         }
         .content-wrapper {
             display: flex;
+            transition: 0.5s;
         }
 
         .content {
-            width: 300px;
+            /* width: 300px; */
             height: 200px;
             background-color: antiquewhite;
 
@@ -48,35 +49,45 @@
         <button class="next">다음</button>
     </div>
     <script>
-        const content = document.querySelector('.content-wrapper');
+        const viewCount = 2;
+        const gap = 6;
+        const slider = document.querySelector('.slider')
+        const contentWrapper = document.querySelector('.content-wrapper');
+        const slideCount = contentWrapper.childElementCount;
         const prev = document.querySelector('.prev');
         const next = document.querySelector('.next');
         // const slideWidth = content.children[0].clientWidth
+        const contentWidth = (slider.clientWidth - gap * (viewCount - 1)) / viewCount
 
         let index = 0;
 
         // 좌표는 하나로 사용할 것
+        contentWrapper.style.gap = `${gap}px`
+
+        for(let i=0; i < slideCount; i++) {
+            contentWrapper.children[i].style.width = `${contentWidth}px`
+        }
 
         prev.addEventListener('click', ()=> {
             index--;
             if(index < 0) {
-                index = 0;
+                index = contentWrapper.childElementCount-viewCount;
             }
             
-            slider()
+            toSlider()
         })
 
         next.addEventListener('click', ()=> {
             index++;
-            if(index > content.childElementCount-1) {
-                index = content.childElementCount-1;
+            if(index > contentWrapper.childElementCount-viewCount) {
+                index = 0;
             }
 
-            slider()
+            toSlider()
         })
 
-        function slider() {
-            content.style.transform = `translateX(${index*-300}px)`
+        function toSlider() {
+            contentWrapper.style.transform = `translateX(${index * -(contentWidth + gap)}px)`
         }
 
         
