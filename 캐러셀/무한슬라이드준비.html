@@ -4,11 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            display: flex;
+            transition: 0.5s;
+        }
+
+        .content {
+            height: 200px;
+            background-color: pink;
+
+            flex-shrink: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+        }
+    </style>
 </head>
 <body>
-    <!-- '인덱스.html'의 내용을 전부 복사해 작업합니다 -->
-     
-     <!-- 첫번째와 마지막 슬라이드를 복사한 뒤
-          마지막 슬라이드는 맨 앞에, 첫번째 슬라이드는 맨 뒤에 위치시킵니다. -->
+    <div class="slider">
+        <ul class="content-wrapper">
+            <li class="content">1(처음)</li>
+            <li class="content">2</li>
+            <li class="content">3</li>
+            <li class="content">4</li>
+            <li class="content">5</li>
+            <li class="content">6</li>
+            <li class="content">7</li>
+            <li class="content">8(끝)</li>
+        </ul>
+    </div>
+    <div class="controls">
+        <button class="prev">이전</button>
+        <button class="next">다음</button>
+    </div>
+
+    <script>
+        const viewCount = 1;
+        const gap = 0;
+        const slider = document.querySelector('.slider')
+        const contentWrapper = document.querySelector('.content-wrapper');
+        const slideCount = contentWrapper.childElementCount;
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+
+        const contentWidth = (slider.clientWidth - gap * (viewCount - 1)) / viewCount
+
+        const cloneFirst = contentWrapper.firstElementChild.cloneNode(true);
+        const cloneLast = contentWrapper.lastElementChild.cloneNode(true);
+
+        contentWrapper.appendChild(cloneFirst);
+        contentWrapper.insertBefore(cloneLast, contentWrapper.firstElementChild);
+
+        let index = 0 ;
+
+        contentWrapper.style.gap = `${gap}px`
+
+        for(let i = 0 ; i < contentWrapper.childElementCount ; i ++) {
+            contentWrapper.children[i].style.width = `${contentWidth}px`
+        }
+
+        prevButton.addEventListener('click',()=>{
+
+            index--;
+            if(index < 1 ) {
+                index = contentWrapper.childElementCount-viewCount-1;
+            }
+            applyIndexToSlider()
+        })
+        nextButton.addEventListener('click',()=>{
+
+ 
+            index++;
+            applyIndexToSlider()
+
+
+
+            // 만약 마지막 슬라이드(복사본)에 도달 했다면
+            if(index > contentWrapper.childElementCount-viewConnt-1) {
+                setTimeout(() => {
+                    index = viewCount
+                    applyIndexToSlider(false)
+                }, 500);
+            }
+            // transtion 지속시간만큼 시간이 흐른 뒤에
+            // transtion을 0으로 만들고, 좌표를 첫번째 슬라이드로 바꿔치기한다
+            // if(index > contentWrapper.childElementCount-viewCount-2) {
+            //     index = 0 ;
+            // }
+
+
+           
+        })
+
+        function applyIndexToSlider(animation){
+            if(animation) {
+                contentWrapper.style.transition = `0.5s`
+            }else {
+                contentWrapper.style.transition = `none`
+            }
+            
+            contentWrapper.style.transform = `translateX(${index * -(contentWidth + gap)}px)`
+        }
+    </script>
 </body>
 </html>
