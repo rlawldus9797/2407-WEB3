@@ -9,21 +9,21 @@
 
         .container {
             width: 500px;
-            height: 400px;
-            border: 1px solid #222;
+            height: 300px;
+            overflow: hidden;
         }
 
         .ul-contain {
             display: flex;
-            overflow: hidden;
+            transition: 0.5s;
         }
         .box {
             width: 500px;
-            height: 400px;
+            height: 300px;
             background-color: antiquewhite;
-            display: flex;
             
             flex-shrink: 0;
+            display: flex;
 
             align-items: center;
             justify-content: center;
@@ -35,43 +35,58 @@
 <body>
     <div class="container">
         <ul class="ul-contain">
-            <li class="box">1</li>
+            <li class="box">1(처음)</li>
             <li class="box">2</li>
             <li class="box">3</li>
             <li class="box">4</li>
             <li class="box">5</li>
+            <li class="box">6</li>
+            <li class="box">7</li>
+            <li class="box">8(끝)</li>
         </ul>
     </div>
 
-    <div class="anima">
+    <div class="controls">
         <button class="prev">이전</button>
         <button class="next">다음</button>
     </div>
 
     <script>
-        const ulContain = document.querySelector('.ul-contain');
-        const prevButton = document.querySelector('.prev');
-        const nextButton = document.querySelector('.next');
+    const viewCount = 1;
+    const container = document.querySelector('.container')
+    const ulContain = document.querySelector('.ul-contain')
+    const prevButton = document.querySelector('.prev')
+    const nextButton = document.querySelector('.next')
 
-        let 좌표 = 0;
+    const boxWidth = container.clientWidth / viewCount
+    console.log(boxWidth);
 
-        nextButton.addEventListener('click', ()=> {
+    let 좌표 = 0;
 
-            좌표++;
-            if(좌표 < 0){
-                ulContain.style.transform = `translateX(${좌표}px)`
+    prevButton.addEventListener('click', ()=> {
+       좌표--
 
-            }
-        })
+        if(좌표 > 0) {
+            좌표 = 0;
+        }
 
-        prevButton.addEventListener('click', ()=> {
+        slide()
+    })
 
-            좌표--;
-            if(좌표 > 600) {
-                ulContain.style.transform = `translateX(${좌표}px)`
+    nextButton.addEventListener('click', ()=> {
+        좌표++
 
-            }
-        })
+        if(좌표 <-1000) {
+            좌표 = -1000
+        }
+
+        slide()
+    })
+
+    function slide() {
+        ulContain.style.transform = `translateX(${boxWidth})`
+    }
+
     </script>
 </body>
 </html>
