@@ -54,7 +54,7 @@
     </div>
 
     <script>
-        const viewCount = 1;
+        const viewCount = 2;
         const gap = 0;
         const slider = document.querySelector('.slider')
         const contentWrapper = document.querySelector('.content-wrapper');
@@ -65,11 +65,34 @@
 
         const contentWidth = (slider.clientWidth - gap * (viewCount - 1)) / viewCount
 
-        const cloneFirst = contentWrapper.firstElementChild.cloneNode(true);
-        const cloneLast = contentWrapper.lastElementChild.cloneNode(true);
 
-        contentWrapper.appendChild(cloneFirst);
-        contentWrapper.insertBefore(cloneLast, contentWrapper.firstElementChild);
+        // 현재 뷰카운트가 달라지면 오작동하는 이슈가 있습니다.
+        // 이는 뷰카운트 갯수만큼 클론을 만들어야 하는데
+        // 기존의 작성은 뷰카운트가 1인 경우에만 올바르게 작동되는 상황입니다.
+        // 반복문을 이용해 뷰카운트의 갯수만큼 clone을 만들어주면 해결 될 것 같은데,
+        // 반복문을 한번만 쓰게되면 1 2 3 4 5 -> [1] [5] 1 2 3 4 5 [1] [5] 이런식으로 될것입니다.
+        // 복사하는 부분과 끼워넣는 부분을 별도로 분리해서 (for문 2개 이상 쓰기)
+        // 복사본을 적절한 위치에 잘 넣어보도록 합시다.
+
+        // 퍼스트, 라스트 말고 개체.children[index]
+
+        const cloneFirst = [];
+        const cloneLast = [];
+
+        for(let i = 0; i < viewCount; i++) {
+            cloneFirst.push(contentWrapper.children[i].cloneNode(true));
+            cloneLast.push(contentWrapper.children[contentWrapper.childElementCount - 1 - i].cloneNode(true));
+
+        }
+
+        for(let i = 0; i < viewCount; i++) {
+            contentWrapper.appendChild(cloneFirst[i]);
+            contentWrapper.insertBefore(cloneLast[i], contentWrapper.firstElementChild);
+
+        }
+
+
+
 
         let index = viewCount ;
         let playAble = true;
@@ -153,7 +176,7 @@
         // 거짓(false)일때 애니메이션 없이 실행
         function applyIndexToSlider(animation){
             if(animation) {
-                contentWrapper.style.transition = `0.5s`
+                contentWrapper.style.transition = `${transitionTime}ms`
             }else {
                 contentWrapper.style.transition = `none`
             }
