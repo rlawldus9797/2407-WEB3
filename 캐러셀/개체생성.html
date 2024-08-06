@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        // document에 있는 container를 상수선언으로 가져온다.
+
+
+        for(let i = 0; i < 100; i++) {
+
+            const newObj = document.createElement('p');
+            // newObj라는 이름을 가진 p태그를 상수선언으로 만들어준다.
+            newObj.classList.add('radio-button')
+            // 만들어준 p태그에 radio-button를 클래스로 넣어준다.
+            
+            container.appendChild(newObj);
+        }
+        // container에 newObj를 복사로 넣어준다.
+    </script>
+</body>
+</html>
