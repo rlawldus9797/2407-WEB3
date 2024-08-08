@@ -112,6 +112,7 @@ function createSlider(target, viewCount, gap, transitionTime, autoPlay){
     contentsWrapper.style.gap = `${gap}px`
 
     window.addEventListener('resize', calcSlideWidth)
+    // 윈도우의 크기가 다시 지정될 때 함수 clacSlideWidth를 실행한다.
 
     calcSlideWidth();
     applyIndexToSlider(false);
